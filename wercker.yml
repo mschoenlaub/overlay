@@ -5,9 +5,7 @@ build:
         name: Pull latest overlay-env
         code: |-
           mkdir "$WERCKER_CACHE_DIR/docker-images/"
-          if [ -f "$WERCKER_CACHE_DIR/docker-images/overlay-env.tgz" ]; then
-            docker load < "$WERCKER_CACHE_DIR/docker-images/overlay-env.tgz"
-          fi
+          if test -f "$WERCKER_CACHE_DIR/docker-images/overlay-env.tgz"; then docker load < "$WERCKER_CACHE_DIR/docker-images/overlay-env.tgz" fi
           docker pull aegypius/overlay-env:latest
           docker save aegypius/overlay-env:latest > "$WERCKER_CACHE_DIR/docker-images/overlay-env.tgz"
 
