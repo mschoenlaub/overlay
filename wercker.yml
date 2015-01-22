@@ -15,7 +15,7 @@ build:
     - script:
         name: Checking using repoman
         code: |-
-          docker run -v $(pwd):/overlay -i -t aegypius/overlay-env:latest repoman --pretend --verbose full
+          docker run -v $(pwd):/overlay -i -t aegypius/overlay-env:latest repoman --full --include-dev --pretend --verbose
 
   after-steps:
     - script:
