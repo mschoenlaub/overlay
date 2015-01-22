@@ -21,4 +21,4 @@ build:
     - script:
         name: Store docker image to cache
         code: |-
-          docker save aegypius/overlay-env > $WERCKER_CACHE_DIR/docker-images/overlay-env.tgz
+          docker save aegypius/overlay-env:latest > $WERCKER_CACHE_DIR/docker-images/overlay-env.tgz
