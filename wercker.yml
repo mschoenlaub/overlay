@@ -2,10 +2,14 @@ box: wercker-labs/docker
 build:
   steps:
     - script:
-        name: Restore cached image to docker
+        name: Pull latest overlay-env
         code: |-
           mkdir "$WERCKER_CACHE_DIR/docker-images/"
-          if test -f "$WERCKER_CACHE_DIR/docker-images/overlay-env.tgz"; then docker load < "$WERCKER_CACHE_DIR/docker-images/overlay-env.tgz"; fi
+          if [ -f "$WERCKER_CACHE_DIR/docker-images/overlay-env.tgz" ]; then
+            docker load < "$WERCKER_CACHE_DIR/docker-images/overlay-env.tgz"
+          fi
+          docker pull aegypius/overlay-env:latest
+          docker save aegypius/overlay-env:latest > "$WERCKER_CACHE_DIR/docker-images/overlay-env.tgz"
 
     - script:
         name: List docker images (debug)
@@ -13,17 +17,6 @@ build:
           docker images
 
     - script:
-        name: Pull latest overlay-env
-        code: |-
-          docker pull aegypius/overlay-env:latest
-
-    - script:
         name: Checking using repoman
         code: |-
           docker run -v $(pwd):/overlay -i -t aegypius/overlay-env:latest repoman full --include-dev --pretend --verbose
-
-  after-steps:
-    - script:
-        name: Store docker image to cache
-        code: |-
-          docker save aegypius/overlay-env:latest > $WERCKER_CACHE_DIR/docker-images/overlay-env.tgz
