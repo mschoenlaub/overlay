@@ -2,11 +2,11 @@
 <layman>
    <overlay
       type    = "git"
-      src     = "https://aegypius@github.com/aegypius/overlay.git"
+      src     = "https://mschoenlaub@github.com/mschoenlaub/overlay.git"
       contact = ""
       status  = "unofficial"
-      name    = "aegypius">
-      <link>http://github.com/aegypius/overlay</link>
-      <description>aegypius personal overlay</description>
+      name    = "mschoenlaub">
+      <link>http://github.com/mschoenlaub/overlay</link>
+      <description>mschoenlaub personal overlay</description>
    </overlay>
 </layman>
